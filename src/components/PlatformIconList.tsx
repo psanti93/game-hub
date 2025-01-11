@@ -27,8 +27,6 @@ const PlatformIconList = ({platforms}: Props) => {
         web: BsGlobe,
     }
 
-
-
     return(
         <HStack marginY={1}>
           {platforms.map((platform) =>
