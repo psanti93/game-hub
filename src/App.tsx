@@ -1,4 +1,5 @@
 import {Grid, GridItem, Show} from "@chakra-ui/react";
+import NavBar from "./components/NavBar.tsx";
 
 const App = () => {
     return(
@@ -7,7 +8,8 @@ const App = () => {
             lg: `"nav nav" "aside main"`, // for bigger devices
 
         }}>
-            <GridItem area={'nav'} bg={'coral'}> Nav </GridItem>
+            <GridItem area={'nav'}> <NavBar/> </GridItem>
+
             {/*only show on devices bigger than a mobile device*/}
             <Show above={"lg"}>
                 <GridItem area={'aside'} bg={'gold'}> Aside </GridItem>
