@@ -6,7 +6,7 @@ const App = () => {
     return(
         <Grid templateAreas={{
             base: `"nav" "main"`, // for smaller devices - mobile device
-            lg: `"nav nav" "aside main"`, // for bigger devices
+            lg: ` "nav nav"  "aside main"`, // for bigger devices //this determines the order too of how the items are set
 
         }}>
             <GridItem area={'nav'}> <NavBar/> </GridItem>
