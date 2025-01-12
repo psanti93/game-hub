@@ -1,6 +1,6 @@
 import apiClient from "../services/api-client.ts";
 import {useEffect, useState} from "react";
-import {CanceledError} from "axios";
+import {AxiosRequestConfig, CanceledError} from "axios";
 
 
 interface FetchResponse<T> {
@@ -9,7 +9,7 @@ interface FetchResponse<T> {
 }
 // generic way of setting the endpoint for both genres and game
 
-const useData = <T>(endpoint:string) => {
+const useData = <T>(endpoint:string, requestConfig?: AxiosRequestConfig, deps?: any[]) => {
     const [data, setData] = useState<T[]>([])
     const [error, setError] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -18,7 +18,7 @@ const useData = <T>(endpoint:string) => {
         const controller = new AbortController()
         setIsLoading(true)
         apiClient
-            .get<FetchResponse<T>>(endpoint,{signal: controller.signal})
+            .get<FetchResponse<T>>(endpoint,{signal: controller.signal, ...requestConfig})
             .then((response) => {
                 setData(response.data.results)
                 setIsLoading(false)
@@ -31,7 +31,7 @@ const useData = <T>(endpoint:string) => {
             )
 
         return () => controller.abort()
-    }, [])
+    }, deps ? [...deps] : []) // you'll get an error if you don't do this tertiary condition check, cause deps can be identified
 
 
     return {data, error, isLoading}
