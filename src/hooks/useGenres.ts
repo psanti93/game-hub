@@ -1,43 +1,13 @@
-import apiClient from "../services/api-client.ts";
-import {useEffect, useState} from "react";
-import {CanceledError} from "axios";
 
-interface Genre {
+import useData from "../hooks/useData.ts";
+
+export interface Genre {
     id: number,
     name: string,
 }
 
-interface FetchGenresResponse {
-    count: number,
-    results: Genre []
-}
 
-const useGenres = () => {
-    const [genres, setGenres] = useState<Genre[]>([])
-    const [error, setError] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        const controller = new AbortController()
-        setIsLoading(true)
-        apiClient
-            .get<FetchGenresResponse>("/genres",{signal: controller.signal})
-            .then((response) => {
-                setGenres(response.data.results)
-                setIsLoading(false)
-            })
-            .catch(error => {
-                    if (error instanceof CanceledError) return
-                    setError(error)
-                setIsLoading(false)
-                }
-            )
-
-        return () => controller.abort()
-    }, [])
-
-
-    return {genres, error, isLoading}
-}
+// put useData in here to hide exposure of the endpoint in the component
+const useGenres = () => useData<Genre>("/genres")
 
 export default useGenres;
