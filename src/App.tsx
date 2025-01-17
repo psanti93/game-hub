@@ -39,6 +39,7 @@ const App = () => {
                 </GridItem>
             </Show>
             <GridItem area={'main'} >
+                {/*adding flex && boox here handls the CSS "margin" styles cannot be used to apply padding between the popper warning*/}
                 <Flex paddingLeft={2} marginBottom={5}>
                     <Box marginRight={5}>
                         <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})}></PlatformSelector>
