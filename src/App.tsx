@@ -14,14 +14,7 @@ export interface GameQuery {
 
 const App = () => {
 
-    // genre and game grid both share the app as the parent component
-    // when passing state between components you should try to propagate state change to the closest parent component
-    // original
-    // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
-    // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)
-
     const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
-
 
     return(
         <Grid
