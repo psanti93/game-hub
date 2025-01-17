@@ -1,9 +1,10 @@
-
+import noImage from '../assets/no-image-placeholder-6f3882e0.webp'
 
 // the api we use crops an image in flight. We want to crop it down so devices with slower networks don't have to
 // take forever to load it
 
 const getCroppedImageUrl = (url: string) => {
+    if (!url) return noImage
     const target = 'media/'
 
     // target.length grabs the value of the 'media/' and appends it io/ (play around by adding a number instead of target.length)
