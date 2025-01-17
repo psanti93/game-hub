@@ -8,7 +8,7 @@ import {Genre} from "./hooks/useGenres.ts";
 const App = () => {
 
     // genre and game grid both share the app as the parent component
-    // when passing state between components you should try to propagate state change to the parent component
+    // when passing state between components you should try to propagate state change to the closest parent component
     const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
 
 
