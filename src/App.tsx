@@ -29,7 +29,7 @@ const App = () => {
             {/*only show on devices bigger than a mobile device*/}
             <Show above={"lg"}>
                 <GridItem area={'aside'} paddingX={5}>
-                    <GenreList onSelectedGenre={(genre) => setSelectedGenre(genre)}/>
+                    <GenreList selectedGenre={selectedGenre} onSelectedGenre={(genre) => setSelectedGenre(genre)}/>
                 </GridItem>
             </Show>
             <GridItem area={'main'} >
