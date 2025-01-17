@@ -7,12 +7,20 @@ import {Genre} from "./hooks/useGenres.ts";
 import PlatformSelector from "./components/PlatformSelector.tsx";
 import {Platform} from "./hooks/useGames.ts";
 
+export interface GameQuery {
+    genre: Genre | null
+    platform: Platform | null
+}
+
 const App = () => {
 
     // genre and game grid both share the app as the parent component
     // when passing state between components you should try to propagate state change to the closest parent component
-    const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
-    const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)
+    // original
+    // const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
+    // const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)
+
+    const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
 
 
     return(
@@ -32,12 +40,12 @@ const App = () => {
             {/*only show on devices bigger than a mobile device*/}
             <Show above={"lg"}>
                 <GridItem area={'aside'} paddingX={5}>
-                    <GenreList selectedGenre={selectedGenre} onSelectedGenre={(genre) => setSelectedGenre(genre)}/>
+                    <GenreList selectedGenre={gameQuery.genre} onSelectedGenre={(genre) => setGameQuery({...gameQuery, genre})}/>
                 </GridItem>
             </Show>
             <GridItem area={'main'} >
-                <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform) => setSelectedPlatform(platform)}></PlatformSelector>
-                <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform}/>
+                <PlatformSelector selectedPlatform={gameQuery.platform} onSelectPlatform={(platform) => setGameQuery({...gameQuery, platform})}></PlatformSelector>
+                <GameGrid gameQuery={gameQuery}/>
             </GridItem>
         </Grid>
     )
