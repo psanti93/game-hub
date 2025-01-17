@@ -34,6 +34,7 @@ const useData = <T>(endpoint:string, requestConfig?: AxiosRequestConfig, deps?: 
     }, deps ? [...deps] : [])
     // ^you'll get an error if you don't do this tertiary condition check, cause deps can be undefined. This ensures that if there are deps you can pass them in otherwise no requeest will be made
     // adding this so that you can pass in the parameters to make the filtered request, leaving an empty array won't make another call
+    // any dependencies added will rerun the effect in order to make the call to the server
 
     return {data, error, isLoading}
 }
