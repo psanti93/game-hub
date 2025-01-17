@@ -5,12 +5,14 @@ import GenreList from "./components/GenreList.tsx";
 import {useState} from "react";
 import {Genre} from "./hooks/useGenres.ts";
 import PlatformSelector from "./components/PlatformSelector.tsx";
+import {Platform} from "./hooks/useGames.ts";
 
 const App = () => {
 
     // genre and game grid both share the app as the parent component
     // when passing state between components you should try to propagate state change to the closest parent component
     const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null)
+    const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null)
 
 
     return(
@@ -34,8 +36,8 @@ const App = () => {
                 </GridItem>
             </Show>
             <GridItem area={'main'} >
-                <PlatformSelector></PlatformSelector>
-                <GameGrid selectedGenre={selectedGenre}/>
+                <PlatformSelector selectedPlatform={selectedPlatform} onSelectPlatform={(platform) => setSelectedPlatform(platform)}></PlatformSelector>
+                <GameGrid selectedGenre={selectedGenre} selectedPlatform={selectedPlatform}/>
             </GridItem>
         </Grid>
     )
