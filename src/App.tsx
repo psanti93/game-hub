@@ -7,6 +7,7 @@ import {Genre} from "./hooks/useGenres.ts";
 import PlatformSelector from "./components/PlatformSelector.tsx";
 import {Platform} from "./hooks/useGames.ts";
 
+// Refactoring using a Query Object Example
 export interface GameQuery {
     genre: Genre | null
     platform: Platform | null
