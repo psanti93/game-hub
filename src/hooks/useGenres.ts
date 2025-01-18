@@ -1,6 +1,4 @@
-
-import useData from "../hooks/useData.ts";
-
+import genres from "../data/genres"
 export interface Genre {
     id: number,
     name: string,
@@ -9,6 +7,6 @@ export interface Genre {
 
 
 // put useData in here to hide exposure of the endpoint in the component
-const useGenres = () => useData<Genre>("/genres")
+const useGenres = () => ({data: genres, isLoading: false, error: null})
 
 export default useGenres;
